@@ -1,0 +1,27 @@
+{
+  "name": "paste-guard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hide secrets and personal data before they reach AI chats. Runs fully on-device.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/unit/*.test.js",
+    "fetch:model": "bash scripts/fetch-model.sh",
+    "eval:ner": "node scripts/eval-ner.mjs",
+    "test:e2e": "node tests/e2e/run.mjs",
+    "build": "node scripts/build.mjs",
+    "build:test": "node scripts/build.mjs --test"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@huggingface/transformers": "^4.3.2",
+    "esbuild": "^0.28.2",
+    "prosemirror-history": "^1.5.1",
+    "prosemirror-keymap": "^1.2.3",
+    "prosemirror-model": "^1.25.12",
+    "prosemirror-schema-basic": "^1.2.5",
+    "prosemirror-state": "^1.4.4",
+    "prosemirror-view": "^1.42.9",
+    "puppeteer-core": "^25.16.0"
+  }
+}

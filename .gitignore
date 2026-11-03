@@ -1,0 +1,7 @@
+node_modules/
+dist/
+models/pii/onnx/
+scratch/
+*.zip
+.e2e-profile/
+tests/e2e/fixtures/pm.bundle.js
