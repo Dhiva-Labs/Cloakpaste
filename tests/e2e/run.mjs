@@ -19,6 +19,8 @@ const fixtures = join(root, 'tests', 'e2e', 'fixtures');
 const extPath = join(root, 'dist', 'extension');
 const shotsIdx = process.argv.indexOf('--shots');
 const shots = shotsIdx > 0 ? process.argv[shotsIdx + 1] : null;
+const dark = process.argv.includes('--dark');
+const scheme = (p) => dark && p.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
 if (shots) await mkdir(shots, { recursive: true });
 
 // Synthetic secrets only; none of these are real.
@@ -85,6 +87,7 @@ try {
   const page = await browser.newPage();
   page.on('console', (m) => m.type() === 'error' && errors.push(`[page] ${m.text()}`));
   page.on('pageerror', (e) => errors.push(`[page] ${e.message}`));
+  await scheme(page);
   await page.goto(ORIGIN + '/');
   await page.bringToFront();
   const cdp = await page.createCDPSession();
@@ -231,6 +234,7 @@ try {
   await test('playground runs the model inside the extension', async () => {
     const opt = await browser.newPage();
     opt.on('pageerror', (e) => errors.push(`[options] ${e.message}`));
+    await scheme(opt);
     await opt.goto(`chrome-extension://${extId}/src/options/options.html`);
     await opt.click('#pg-run');
     await opt.waitForFunction(() => /hidden/.test(document.querySelector('#pg-meta').textContent), { timeout: 20000 });

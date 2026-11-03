@@ -22,7 +22,7 @@ export function createRestorer({ getVault, getSettings, ui }) {
     if (document.getElementById('pasteguard-highlight')) return;
     const s = document.createElement('style');
     s.id = 'pasteguard-highlight';
-    s.textContent = `::highlight(${HIGHLIGHT}) { background-color: #F2C200; color: #161513; }`;
+    s.textContent = `::highlight(${HIGHLIGHT}) { background-color: #E8D2B5; color: #590907; }`;
     (document.head || document.documentElement).append(s);
   }
 

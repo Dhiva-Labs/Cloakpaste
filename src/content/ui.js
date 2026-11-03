@@ -3,9 +3,9 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #FFFDF7; --ink: #161513; --muted: #6B665C; --line: #E4DECF; --bar: #161513; --hi: #F2C200; }
+:host { all: initial; --paper: #F5EADB; --ink: #2B0A08; --muted: #5C5E53; --line: #CFC6B4; --bar: #590907; --hi: #E8D2B5; }
 @media (prefers-color-scheme: dark) {
-  :host { --paper: #1C1B18; --ink: #EFEBE0; --muted: #A39E92; --line: #34322C; --bar: #F2C200; --hi: #161513; }
+  :host { --paper: #221312; --ink: #E8D2B5; --muted: #A5A79B; --line: #3B2B28; --bar: #E8D2B5; --hi: #590907; }
 }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
@@ -35,7 +35,7 @@ button.act.primary { background: var(--bar); color: var(--hi); border-color: var
   font: 12px/1.45 "IBM Plex Sans", system-ui, sans-serif; display: flex; gap: 8px; align-items: center; }
 .tip .val { color: var(--ink); white-space: pre-wrap; word-break: break-all; max-height: 120px; overflow: auto; }
 .tip .kind { color: var(--muted); }
-.flash { position: fixed; z-index: 2147483647; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--bar);
+.flash { position: fixed; z-index: 2147483647; left: 50%; top: 20px; transform: translateX(-50%); background: var(--bar);
   color: var(--hi); border-radius: 6px; padding: 6px 12px; font: 12px "IBM Plex Sans", system-ui, sans-serif; }
 `;
 
