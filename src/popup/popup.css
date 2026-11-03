@@ -1,0 +1,14 @@
+body { width: 340px; padding: 12px; display: grid; gap: 10px; }
+.brand { gap: 8px; }
+.logo { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 5px; background: var(--bar); color: var(--hi); font: 600 12px/1 var(--mono); }
+h1 { font-size: 16px; }
+h2 { font-size: 13px; }
+.small { font-size: 12px; }
+.host { font-weight: 600; word-break: break-all; }
+.items { list-style: none; margin: 8px 0 0; padding: 0; max-height: 240px; overflow: auto; }
+.items li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--line); }
+.items .val { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font: 12px var(--mono); }
+.items button { padding: 2px 8px; font-size: 12px; }
+.foot { margin-top: 6px; }
+footer { padding: 0 2px; }
+#empty { margin: 8px 0 0; }

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PasteGuard settings</title>
+  <link rel="stylesheet" href="../ui/theme.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header class="row">
+      <span class="logo" aria-hidden="true">▮</span>
+      <div>
+        <h1>PasteGuard</h1>
+        <p class="muted">Hides secrets and personal data before they reach AI chats. Detection runs on this device; nothing is uploaded.</p>
+      </div>
+    </header>
+
+    <section id="welcome" class="card welcome" hidden>
+      <h2>You're set up</h2>
+      <p>PasteGuard now checks what you paste into ChatGPT, Claude, Gemini and other AI chats. Emails, keys, card numbers and names are swapped for placeholders like <span class="ph">EMAIL_1</span> before the text lands. When the AI replies with a placeholder, hover it to see the original, or copy the reply to get the originals back.</p>
+      <p class="muted">Try it in the playground below.</p>
+    </section>
+
+    <section class="card">
+      <h2>Playground</h2>
+      <p class="muted">Paste or type anything to see what PasteGuard would hide. Playground values use their own vault.</p>
+      <textarea id="pg-input" rows="7" spellcheck="false">Hi team, please ping John O'Neill (john.oneill@acme.io, +44 20 7946 0958) about the Paris office.
+Priya Raman from Chennai will review it.
+OPENAI_API_KEY=sk-proj-Q8m2N4b7X1c9V3z5K6j0L2p4R7t9W1y3
+postgres://admin:S3cr3tPass@db.internal:5432/app
+Card 4111 1111 1111 1111, Aadhaar 2345 6789 0124, from IP 203.0.113.42</textarea>
+      <div class="row actions">
+        <button id="pg-run" class="primary">Check text</button>
+        <span id="pg-meta" class="muted small"></span>
+      </div>
+      <pre id="pg-output" class="output" hidden></pre>
+      <ul id="pg-items" class="found"></ul>
+    </section>
+
+    <section class="card">
+      <h2>What to hide</h2>
+      <div id="types" class="groups"></div>
+    </section>
+
+    <section class="card">
+      <h2>Detection</h2>
+      <label class="row option">
+        <span class="switch"><input type="checkbox" id="model"><span></span></span>
+        <span><strong>Find names and addresses with the on-device model</strong><br>
+        <span class="muted small">A 29 MB model that runs inside the browser. Turn off to use only pattern detection.</span></span>
+      </label>
+      <label class="row option">
+        <span class="switch"><input type="checkbox" id="highEntropy"><span></span></span>
+        <span><strong>Also hide random-looking strings</strong><br>
+        <span class="muted small">Catches unknown key formats. May also hide hashes and IDs in code.</span></span>
+      </label>
+    </section>
+
+    <section class="card two">
+      <div>
+        <h2>Always hide</h2>
+        <p class="muted small">Company names, project codenames, client names. One per line.</p>
+        <textarea id="customTerms" rows="5" placeholder="Project Falcon"></textarea>
+      </div>
+      <div>
+        <h2>Never hide</h2>
+        <p class="muted small">Exact values to leave alone, like a public support email. One per line.</p>
+        <textarea id="allowlist" rows="5" placeholder="support@example.com"></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Replies</h2>
+      <p class="muted small">How placeholders in the AI's replies are handled.</p>
+      <label class="row option"><input type="radio" name="restoreMode" value="highlight">
+        <span><strong>Highlight, show originals on hover</strong> <span class="tag">recommended</span><br>
+        <span class="muted small">Originals appear only in PasteGuard's own tooltip, never in the page.</span></span></label>
+      <label class="row option"><input type="radio" name="restoreMode" value="replace">
+        <span><strong>Swap originals into the page</strong><br>
+        <span class="muted small">Easier to read. The site's own scripts can then read the originals on screen.</span></span></label>
+      <label class="row option"><input type="radio" name="restoreMode" value="off">
+        <span><strong>Leave replies alone</strong></span></label>
+      <label class="row option">
+        <span class="switch"><input type="checkbox" id="restoreOnCopy"><span></span></span>
+        <span><strong>Restore originals when copying</strong><br>
+        <span class="muted small">Selecting and copying a reply puts the real values on the clipboard. The site's own copy button isn't covered.</span></span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Sites</h2>
+      <div id="sites" class="sites"></div>
+      <div id="custom-sites"></div>
+      <p class="muted small">To protect another site, open it and choose <em>Protect this site</em> in the PasteGuard menu.</p>
+    </section>
+
+    <p class="muted small saved" id="saved" aria-live="polite"></p>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

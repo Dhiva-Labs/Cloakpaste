@@ -1,0 +1,25 @@
+main { max-width: 760px; margin: 0 auto; padding: 28px 16px 60px; display: grid; gap: 14px; }
+header { gap: 12px; align-items: flex-start; }
+.logo { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 7px; background: var(--bar); color: var(--hi); font: 600 18px/1 var(--mono); flex: none; margin-top: 2px; }
+h1 { font-size: 22px; }
+h2 { font-size: 15px; margin-bottom: 6px; }
+header p { margin: 2px 0 0; }
+.small { font-size: 12px; }
+.card p { margin: 4px 0 10px; }
+.actions { margin-top: 10px; }
+.output { white-space: pre-wrap; word-break: break-word; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 10px; font: 13px/1.6 var(--mono); margin: 10px 0 0; }
+.output .ph { font-size: 12px; }
+.found { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.found li { display: flex; gap: 8px; align-items: baseline; font-size: 12px; }
+.found .src { color: var(--muted); }
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px 20px; }
+.groups h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+.groups label { display: flex; gap: 8px; align-items: center; padding: 2px 0; }
+.option { align-items: flex-start; padding: 6px 0; cursor: pointer; }
+.option .switch, .option input[type=radio] { margin-top: 2px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.tag { font-size: 11px; background: var(--hi); color: #161513; border-radius: 4px; padding: 0 5px; }
+.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 20px; margin-bottom: 8px; }
+.sites label { display: flex; gap: 8px; align-items: center; }
+#custom-sites .row { gap: 8px; padding: 4px 0; }
+.saved { min-height: 1.2em; text-align: right; }
