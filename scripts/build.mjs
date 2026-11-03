@@ -56,5 +56,9 @@ if (test) {
   manifest.content_scripts[0].matches.push('http://127.0.0.1/*');
 }
 await writeFile(join(out, 'manifest.json'), JSON.stringify(manifest, null, 2));
-await copy('LICENSE').catch(() => {});
+// Notices for the bundled model and runtime (Apache-2.0 asks for the licence text).
+await copy('THIRD_PARTY_NOTICES.md');
+await copy('PRIVACY.md');
+await copy('node_modules/@huggingface/transformers/LICENSE', 'licenses/Apache-2.0.txt');
+await copy('licenses');
 console.log(`Built ${test ? 'test ' : ''}extension -> ${out}`);

@@ -22,7 +22,15 @@ When the AI replies with `[EMAIL_1]`, hover the placeholder to see the original,
 or copy the reply to get the originals back on your clipboard.
 
 Detection runs on your device. There is no server, account or analytics, and
-the extension makes no network requests.
+the extension makes no network requests. See the [privacy policy](PRIVACY.md).
+
+## Install
+
+- **Chrome Web Store:** pending review.
+- **From a release:** download `pasteguard-<version>.zip` from
+  [Releases](https://github.com/Dhiva-Labs/PasteGuard/releases) and unzip it.
+  Then open `chrome://extensions`, turn on Developer mode, choose
+  **Load unpacked** and select the unzipped folder.
 
 ## What it catches
 
@@ -134,3 +142,15 @@ To try it, open `chrome://extensions`, turn on Developer mode, choose
 playground that shows what would be hidden in any text.
 
 Requires Chrome 116 or later.
+
+## Sponsors
+
+Dhiva Labs is an independent, self-funded lab. [Sponsorships](https://github.com/sponsors/Dhiva-Labs) help bring this project and the rest of Dhiva Labs to every platform, iPhone and Mac included.
+
+[![Sponsor Dhiva Labs](https://img.shields.io/badge/Sponsor-Dhiva%20Labs-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Dhiva-Labs)
+
+Monthly sponsors at $10 and up are listed here:
+
+<!-- sponsors -->
+*Be the first: [sponsor Dhiva Labs](https://github.com/sponsors/Dhiva-Labs).*
+<!-- sponsors -->

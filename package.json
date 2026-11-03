@@ -10,7 +10,8 @@
     "eval:ner": "node scripts/eval-ner.mjs",
     "test:e2e": "node tests/e2e/run.mjs",
     "build": "node scripts/build.mjs",
-    "build:test": "node scripts/build.mjs --test"
+    "build:test": "node scripts/build.mjs --test",
+    "package": "node scripts/package.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {
