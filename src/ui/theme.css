@@ -1,15 +1,13 @@
 /* One dark theme built from three colours, the same whatever the system
-   setting: cobalt black #05122E (page) with a lifted cobalt #0B2150 for cards
-   and #081A41 for fields, lavender violet #B8A2F2 (text,
-   placeholder chips, actions, controls) and tropical lime #BFF23A as a small
-   touch only (logo mark, focus rings, the "recommended" tag, saved state).
-   Cobalt steps share one hue (221°); other tints are the colours at lower
-   opacity, not new hues. --bar/--hi are the
+   setting: #010102 (surfaces), #AD96F1 lavender violet (text, placeholder
+   chips, actions, controls) and #58F6B1 as a small touch only (logo mark,
+   focus rings, the "recommended" tag, saved state). Cards, fields and lines
+   are the lavender at low opacity, not new hues. --bar/--hi are the
    placeholder chip. */
 :root {
-  --paper: #05122E; --card: #0B2150; --field: #081A41;
-  --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .22);
-  --bar: #B8A2F2; --hi: #05122E; --touch: #BFF23A; --track: rgba(184, 162, 242, .3); --danger: #B8A2F2;
+  --paper: #010102; --card: rgba(173, 150, 241, .06); --field: rgba(173, 150, 241, .04);
+  --ink: #AD96F1; --muted: rgba(173, 150, 241, .78); --line: rgba(173, 150, 241, .22);
+  --bar: #AD96F1; --hi: #010102; --touch: #58F6B1; --track: rgba(173, 150, 241, .3); --danger: #AD96F1;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme: dark;

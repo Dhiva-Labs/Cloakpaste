@@ -3,14 +3,14 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #0B2150; --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25); --bar: #B8A2F2; --hi: #05122E; --touch: #BFF23A; }
+:host { all: initial; --paper: #010102; --ink: #AD96F1; --muted: rgba(173, 150, 241, .78); --line: rgba(173, 150, 241, .3); --bar: #AD96F1; --hi: #010102; --touch: #58F6B1; }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
   font: 13px/1.45 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
 .toast { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
   box-shadow: 0 8px 28px rgba(0,0,0,.35); }
 .head { display: flex; gap: 10px; align-items: flex-start; }
-.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: rgba(184, 162, 242, .1); border: 1px solid var(--line); color: var(--touch);
+.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: rgba(173, 150, 241, .1); border: 1px solid var(--line); color: var(--touch);
   display: grid; place-items: center; font: 600 12px/1 "IBM Plex Mono", ui-monospace, monospace; }
 .title { font-weight: 600; }
 .detail { color: var(--muted); margin-top: 2px; }
