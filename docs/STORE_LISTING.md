@@ -55,7 +55,7 @@ Only pasted text is checked. Text you type yourself and files you upload are not
 Source code: https://github.com/Dhiva-Labs/PasteGuard
 
 **Images**
-- Store icon: `icons/icon128.png`
+- Store icon: `store-assets/store-icon-128.png` (96×96 artwork with 16 px transparent padding, as the store recommends)
 - Screenshots (1280×800): `store-assets/screenshot-1.png`, `-2.png`, `-3.png`
 - Small promo tile (440×280): `store-assets/promo-small-440x280.png`
 - Marquee (1400×560): `store-assets/promo-marquee-1400x560.png`
