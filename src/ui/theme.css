@@ -1,18 +1,25 @@
-/* Palette: sand #E8D2B5, oxblood #590907, sage #A5A79B.
-   --bar/--hi are the placeholder chip (background/text). */
+/* One dark theme built from three colours, the same whatever the system
+   setting: oxblood #590907 (surface), sand #E8D2B5 (text, chips, actions),
+   sage #A5A79B (secondary text, lines, controls). Tints are those colours at
+   lower opacity, not new hues. --bar/--hi are the placeholder chip. */
 :root {
-  --paper: #E8D2B5; --card: #F5EADB; --ink: #2B0A08; --muted: #5C5E53; --line: #CFC6B4;
-  --bar: #590907; --hi: #E8D2B5; --sage: #A5A79B; --track: #7F8175; --danger: #590907;
+  --paper: #590907; --card: rgba(232, 210, 181, .07); --field: rgba(232, 210, 181, .06);
+  --ink: #E8D2B5; --muted: #A5A79B; --line: rgba(165, 167, 155, .35);
+  --bar: #E8D2B5; --hi: #590907; --track: rgba(165, 167, 155, .45); --danger: #E8D2B5;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  color-scheme: light dark;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --paper: #170B0A; --card: #221312; --ink: #E8D2B5; --muted: #A5A79B; --line: #3B2B28;
-    --bar: #E8D2B5; --hi: #590907; --track: #5A5C52; --danger: #E89A8E; }
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
-input[type=checkbox], input[type=radio] { accent-color: var(--bar); }
+/* Native checkboxes and radios fall back to the browser's grey; draw them in the palette. */
+input[type=checkbox], input[type=radio] { appearance: none; margin: 0; width: 16px; height: 16px; flex: none; cursor: pointer;
+  border: 1.5px solid var(--muted); background: transparent; display: inline-grid; place-content: center; vertical-align: -3px; }
+input[type=checkbox] { border-radius: 4px; }
+input[type=radio] { border-radius: 50%; }
+input[type=checkbox]:checked { background: var(--bar); border-color: var(--bar); }
+input[type=checkbox]:checked::after { content: ""; width: 8px; height: 4px; border: 2px solid var(--hi); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
+input[type=radio]:checked { border-color: var(--bar); background: radial-gradient(var(--bar) 0 3.5px, transparent 4px); }
+input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2px solid var(--bar); outline-offset: 2px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.5 var(--sans); }
 h1, h2, h3 { margin: 0; font-weight: 600; }
 a { color: inherit; }
@@ -25,12 +32,13 @@ button:hover { border-color: var(--muted); }
 button.primary { background: var(--bar); color: var(--hi); border-color: var(--bar); }
 button.link { border: 0; padding: 0; text-decoration: underline; color: var(--muted); }
 button.danger { color: var(--danger); }
-textarea, input[type=text] { font: 13px/1.5 var(--mono); color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; }
+textarea, input[type=text] { font: 13px/1.5 var(--mono); color: var(--ink); background: var(--field); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; }
 textarea:focus, input:focus, button:focus-visible { outline: 2px solid var(--bar); outline-offset: 1px; }
 .switch { position: relative; display: inline-block; width: 34px; height: 20px; flex: none; }
 .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .switch span { position: absolute; inset: 0; background: var(--track); border-radius: 99px; transition: background .15s; cursor: pointer; }
-.switch span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--card); transition: transform .15s; }
+.switch span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--muted); transition: transform .15s; }
+.switch input:not(:checked) + span { box-shadow: inset 0 0 0 1px var(--muted); }
 .switch input:checked + span { background: var(--bar); }
 .switch input:checked + span::after { transform: translateX(14px); background: var(--hi); }
 .switch input:focus-visible + span { outline: 2px solid var(--bar); outline-offset: 2px; }

@@ -3,15 +3,12 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #F5EADB; --ink: #2B0A08; --muted: #5C5E53; --line: #CFC6B4; --bar: #590907; --hi: #E8D2B5; }
-@media (prefers-color-scheme: dark) {
-  :host { --paper: #221312; --ink: #E8D2B5; --muted: #A5A79B; --line: #3B2B28; --bar: #E8D2B5; --hi: #590907; }
-}
+:host { all: initial; --paper: #590907; --ink: #E8D2B5; --muted: #A5A79B; --line: rgba(165, 167, 155, .35); --bar: #E8D2B5; --hi: #590907; }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
   font: 13px/1.45 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
 .toast { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
-  box-shadow: 0 8px 28px rgba(0,0,0,.18); }
+  box-shadow: 0 8px 28px rgba(0,0,0,.35); }
 .head { display: flex; gap: 10px; align-items: flex-start; }
 .mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: var(--bar); color: var(--hi);
   display: grid; place-items: center; font: 600 12px/1 "IBM Plex Mono", ui-monospace, monospace; }
@@ -31,7 +28,7 @@ button.act.primary { background: var(--bar); color: var(--hi); border-color: var
 .busy .mark { animation: pulse 1s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: .35; } }
 .tip { position: fixed; z-index: 2147483647; max-width: 360px; background: var(--paper); color: var(--ink);
-  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,.35);
   font: 12px/1.45 "IBM Plex Sans", system-ui, sans-serif; display: flex; gap: 8px; align-items: center; }
 .tip .val { color: var(--ink); white-space: pre-wrap; word-break: break-all; max-height: 120px; overflow: auto; }
 .tip .kind { color: var(--muted); }

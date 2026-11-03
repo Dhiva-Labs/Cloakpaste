@@ -19,8 +19,9 @@ const fixtures = join(root, 'tests', 'e2e', 'fixtures');
 const extPath = join(root, 'dist', 'extension');
 const shotsIdx = process.argv.indexOf('--shots');
 const shots = shotsIdx > 0 ? process.argv[shotsIdx + 1] : null;
-const dark = process.argv.includes('--dark');
-const scheme = (p) => dark && p.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+// The theme ignores the system setting; --light checks that it really does.
+const light = process.argv.includes('--light');
+const scheme = (p) => light && p.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
 if (shots) await mkdir(shots, { recursive: true });
 
 // Synthetic secrets only; none of these are real.
@@ -246,7 +247,7 @@ try {
     assert.ok(!out.includes('Priya Raman'));
     if (shots) {
       await opt.setViewport({ width: 900, height: 1100 });
-      await opt.screenshot({ path: join(shots, 'e2e-playground.png') });
+      await opt.screenshot({ path: join(shots, 'e2e-playground.png'), fullPage: true });
     }
     console.log(`       ${meta}`);
     await opt.close();
