@@ -1,7 +1,7 @@
 """Draws the PasteGuard icon: a cobalt-black tile, lavender text lines and a lime redaction bar."""
 from PIL import Image, ImageDraw
 
-TILE, BAR, LINE = (0x0B, 0x10, 0x29, 255), (0xBF, 0xF2, 0x3A, 255), (0xB8, 0xA2, 0xF2, 255)
+TILE, BAR, LINE = (0x0B, 0x21, 0x50, 255), (0xBF, 0xF2, 0x3A, 255), (0xB8, 0xA2, 0xF2, 255)
 
 def icon(size):
     s = size * 8  # supersample, then downscale for smooth edges

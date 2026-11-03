@@ -108,7 +108,7 @@ async function recordStats(origin, tabId, counts) {
     const key = `tab:${tabId}`;
     const n = ((await chrome.storage.session.get(key))[key] || 0) + total;
     await chrome.storage.session.set({ [key]: n });
-    chrome.action.setBadgeBackgroundColor({ tabId, color: '#0B1029' });
+    chrome.action.setBadgeBackgroundColor({ tabId, color: '#05122E' });
     chrome.action.setBadgeTextColor?.({ tabId, color: '#BFF23A' });
     chrome.action.setBadgeText({ tabId, text: n > 99 ? '99+' : String(n) });
   }

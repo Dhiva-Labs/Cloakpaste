@@ -1,13 +1,15 @@
 /* One dark theme built from three colours, the same whatever the system
-   setting: cobalt black #0B1029 (surface), lavender violet #B8A2F2 (text,
+   setting: cobalt black #05122E (page) with a lifted cobalt #0B2150 for cards
+   and #081A41 for fields, lavender violet #B8A2F2 (text,
    placeholder chips, actions, controls) and tropical lime #BFF23A as a small
    touch only (logo mark, focus rings, the "recommended" tag, saved state).
-   Tints are those colours at lower opacity, not new hues. --bar/--hi are the
+   Cobalt steps share one hue (221°); other tints are the colours at lower
+   opacity, not new hues. --bar/--hi are the
    placeholder chip. */
 :root {
-  --paper: #0B1029; --card: rgba(184, 162, 242, .07); --field: rgba(184, 162, 242, .06);
-  --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25);
-  --bar: #B8A2F2; --hi: #0B1029; --touch: #BFF23A; --track: rgba(184, 162, 242, .3); --danger: #B8A2F2;
+  --paper: #05122E; --card: #0B2150; --field: #081A41;
+  --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .22);
+  --bar: #B8A2F2; --hi: #05122E; --touch: #BFF23A; --track: rgba(184, 162, 242, .3); --danger: #B8A2F2;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme: dark;
