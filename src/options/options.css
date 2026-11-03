@@ -1,6 +1,6 @@
 main { max-width: 760px; margin: 0 auto; padding: 28px 16px 60px; display: grid; gap: 14px; }
 header { gap: 12px; align-items: flex-start; }
-.logo { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 7px; background: var(--bar); color: var(--hi); font: 600 18px/1 var(--mono); flex: none; margin-top: 2px; }
+.logo { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 7px; background: var(--field); border: 1px solid var(--line); color: var(--touch); font: 600 18px/1 var(--mono); flex: none; margin-top: 2px; }
 h1 { font-size: 22px; }
 h2 { font-size: 15px; margin-bottom: 6px; }
 header p { margin: 2px 0 0; }
@@ -18,8 +18,8 @@ header p { margin: 2px 0 0; }
 .option { align-items: flex-start; padding: 6px 0; cursor: pointer; }
 .option .switch, .option input[type=radio] { margin-top: 2px; }
 .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.tag { font-size: 11px; background: var(--ink); color: var(--hi); border-radius: 4px; padding: 0 5px; }
+.tag { font-size: 11px; color: var(--touch); border: 1px solid var(--touch); border-radius: 4px; padding: 0 5px; }
 .sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 4px 20px; margin-bottom: 8px; }
 .sites label { display: flex; gap: 8px; align-items: center; }
 #custom-sites .row { gap: 8px; padding: 4px 0; }
-.saved { min-height: 1.2em; text-align: right; }
+.saved { min-height: 1.2em; text-align: right; color: var(--touch); }

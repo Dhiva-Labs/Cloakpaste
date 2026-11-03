@@ -3,14 +3,14 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #0B1029; --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25); --bar: #BFF23A; --hi: #0B1029; }
+:host { all: initial; --paper: #0B1029; --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25); --bar: #B8A2F2; --hi: #0B1029; --touch: #BFF23A; }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
   font: 13px/1.45 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
 .toast { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
   box-shadow: 0 8px 28px rgba(0,0,0,.35); }
 .head { display: flex; gap: 10px; align-items: flex-start; }
-.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: var(--bar); color: var(--hi);
+.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: rgba(184, 162, 242, .1); border: 1px solid var(--line); color: var(--touch);
   display: grid; place-items: center; font: 600 12px/1 "IBM Plex Mono", ui-monospace, monospace; }
 .title { font-weight: 600; }
 .detail { color: var(--muted); margin-top: 2px; }
@@ -19,6 +19,7 @@ const STYLE = `
 button.act { font: inherit; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 6px;
   padding: 4px 10px; cursor: pointer; }
 button.act:hover { border-color: var(--muted); }
+button:focus-visible { outline: 2px solid var(--touch); outline-offset: 1px; }
 button.act.primary { background: var(--bar); color: var(--hi); border-color: var(--bar); }
 .items { margin: 10px 0 0; padding: 0; list-style: none; max-height: 180px; overflow: auto; border-top: 1px solid var(--line); }
 .items li { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); align-items: baseline; }

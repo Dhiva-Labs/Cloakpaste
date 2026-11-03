@@ -1,6 +1,6 @@
 body { width: 340px; padding: 12px; display: grid; gap: 10px; }
 .brand { gap: 8px; }
-.logo { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 5px; background: var(--bar); color: var(--hi); font: 600 12px/1 var(--mono); }
+.logo { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 5px; background: var(--field); border: 1px solid var(--line); color: var(--touch); font: 600 12px/1 var(--mono); }
 h1 { font-size: 16px; }
 h2 { font-size: 13px; }
 .small { font-size: 12px; }
