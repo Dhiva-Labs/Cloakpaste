@@ -1,13 +1,15 @@
-/* One dark theme built from three colours, the same whatever the system
-   setting: #010102 (surfaces), #AD96F1 lavender violet (text, placeholder
-   chips, actions, controls) and #58F6B1 as a small touch only (logo mark,
-   focus rings, the "recommended" tag, saved state). Cards, fields and lines
-   are the lavender at low opacity, not new hues. --bar/--hi are the
-   placeholder chip. */
+/* One dark theme from three colours, the same whatever the system setting:
+   #010102 for surfaces, #AD96F1 violet for placeholder chips (and focus
+   rings), #58F6B1 mint for actions and controls (buttons, switches,
+   checkboxes) plus small touches (logo mark, saved note). Text is a very pale
+   violet tint (#F1EDFD) so violet doesn't flood the page; cards, fields and
+   lines are that tint at low opacity. --bar/--hi are the placeholder chip,
+   --ctl/--on-ctl the controls. */
 :root {
-  --paper: #010102; --card: rgba(173, 150, 241, .06); --field: rgba(173, 150, 241, .04);
-  --ink: #AD96F1; --muted: rgba(173, 150, 241, .78); --line: rgba(173, 150, 241, .22);
-  --bar: #AD96F1; --hi: #010102; --touch: #58F6B1; --track: rgba(173, 150, 241, .3); --danger: #AD96F1;
+  --paper: #010102; --card: rgba(241, 237, 253, .045); --field: rgba(241, 237, 253, .035);
+  --ink: #F1EDFD; --muted: rgba(241, 237, 253, .66); --line: rgba(241, 237, 253, .14);
+  --bar: #AD96F1; --hi: #010102; --ctl: #58F6B1; --on-ctl: #010102; --touch: #58F6B1; --focus: #AD96F1;
+  --track: rgba(241, 237, 253, .2); --danger: #AD96F1;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme: dark;
@@ -18,10 +20,10 @@ input[type=checkbox], input[type=radio] { appearance: none; margin: 0; width: 16
   border: 1.5px solid var(--muted); background: transparent; display: inline-grid; place-content: center; vertical-align: -3px; }
 input[type=checkbox] { border-radius: 4px; }
 input[type=radio] { border-radius: 50%; }
-input[type=checkbox]:checked { background: var(--bar); border-color: var(--bar); }
-input[type=checkbox]:checked::after { content: ""; width: 8px; height: 4px; border: 2px solid var(--hi); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
-input[type=radio]:checked { border-color: var(--bar); background: radial-gradient(var(--bar) 0 3.5px, transparent 4px); }
-input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2px solid var(--touch); outline-offset: 2px; }
+input[type=checkbox]:checked { background: var(--ctl); border-color: var(--ctl); }
+input[type=checkbox]:checked::after { content: ""; width: 8px; height: 4px; border: 2px solid var(--on-ctl); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
+input[type=radio]:checked { border-color: var(--ctl); background: radial-gradient(var(--ctl) 0 3.5px, transparent 4px); }
+input[type=checkbox]:focus-visible, input[type=radio]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.5 var(--sans); }
 h1, h2, h3 { margin: 0; font-weight: 600; }
 a { color: inherit; }
@@ -31,18 +33,18 @@ a { color: inherit; }
 .mono { font-family: var(--mono); font-size: 12px; }
 button { font: inherit; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
 button:hover { border-color: var(--muted); }
-button.primary { background: var(--bar); color: var(--hi); border-color: var(--bar); }
+button.primary { background: var(--ctl); color: var(--on-ctl); border-color: var(--ctl); }
 button.link { border: 0; padding: 0; text-decoration: underline; color: var(--muted); }
 button.danger { color: var(--danger); }
 textarea, input[type=text] { font: 13px/1.5 var(--mono); color: var(--ink); background: var(--field); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; }
-textarea:focus, input:focus, button:focus-visible { outline: 2px solid var(--touch); outline-offset: 1px; }
+textarea:focus, input:focus, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
 .switch { position: relative; display: inline-block; width: 34px; height: 20px; flex: none; }
 .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .switch span { position: absolute; inset: 0; background: var(--track); border-radius: 99px; transition: background .15s; cursor: pointer; }
 .switch span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transition: transform .15s; }
 .switch input:not(:checked) + span { box-shadow: inset 0 0 0 1px var(--muted); }
-.switch input:checked + span { background: var(--bar); }
-.switch input:checked + span::after { transform: translateX(14px); background: var(--hi); }
-.switch input:focus-visible + span { outline: 2px solid var(--touch); outline-offset: 2px; }
+.switch input:checked + span { background: var(--ctl); }
+.switch input:checked + span::after { transform: translateX(14px); background: var(--on-ctl); }
+.switch input:focus-visible + span { outline: 2px solid var(--focus); outline-offset: 2px; }
 .row { display: flex; align-items: center; gap: 10px; }
 .spread { justify-content: space-between; }

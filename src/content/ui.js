@@ -3,14 +3,14 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #010102; --ink: #AD96F1; --muted: rgba(173, 150, 241, .78); --line: rgba(173, 150, 241, .3); --bar: #AD96F1; --hi: #010102; --touch: #58F6B1; }
+:host { all: initial; --paper: #010102; --ink: #F1EDFD; --muted: rgba(241, 237, 253, .66); --line: rgba(241, 237, 253, .18); --bar: #AD96F1; --hi: #010102; --ctl: #58F6B1; --on-ctl: #010102; --touch: #58F6B1; --focus: #AD96F1; }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
   font: 13px/1.45 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
 .toast { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
   box-shadow: 0 8px 28px rgba(0,0,0,.35); }
 .head { display: flex; gap: 10px; align-items: flex-start; }
-.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: rgba(173, 150, 241, .1); border: 1px solid var(--line); color: var(--touch);
+.mark { flex: none; width: 22px; height: 22px; border-radius: 5px; background: rgba(241, 237, 253, .06); border: 1px solid var(--line); color: var(--touch);
   display: grid; place-items: center; font: 600 12px/1 "IBM Plex Mono", ui-monospace, monospace; }
 .title { font-weight: 600; }
 .detail { color: var(--muted); margin-top: 2px; }
@@ -19,8 +19,8 @@ const STYLE = `
 button.act { font: inherit; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 6px;
   padding: 4px 10px; cursor: pointer; }
 button.act:hover { border-color: var(--muted); }
-button:focus-visible { outline: 2px solid var(--touch); outline-offset: 1px; }
-button.act.primary { background: var(--bar); color: var(--hi); border-color: var(--bar); }
+button:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+button.act.primary { background: var(--ctl); color: var(--on-ctl); border-color: var(--ctl); }
 .items { margin: 10px 0 0; padding: 0; list-style: none; max-height: 180px; overflow: auto; border-top: 1px solid var(--line); }
 .items li { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .ph { flex: none; background: var(--bar); color: var(--hi); border-radius: 4px; padding: 0 6px;
@@ -33,8 +33,8 @@ button.act.primary { background: var(--bar); color: var(--hi); border-color: var
   font: 12px/1.45 "IBM Plex Sans", system-ui, sans-serif; display: flex; gap: 8px; align-items: center; }
 .tip .val { color: var(--ink); white-space: pre-wrap; word-break: break-all; max-height: 120px; overflow: auto; }
 .tip .kind { color: var(--muted); }
-.flash { position: fixed; z-index: 2147483647; left: 50%; top: 20px; transform: translateX(-50%); background: var(--bar);
-  color: var(--hi); border-radius: 6px; padding: 6px 12px; font: 12px "IBM Plex Sans", system-ui, sans-serif; }
+.flash { position: fixed; z-index: 2147483647; left: 50%; top: 20px; transform: translateX(-50%); background: var(--ctl);
+  color: var(--on-ctl); border-radius: 6px; padding: 6px 12px; font: 12px "IBM Plex Sans", system-ui, sans-serif; }
 `;
 
 const el = (tag, cls, text) => {
