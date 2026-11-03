@@ -1,11 +1,12 @@
 /* One dark theme built from three colours, the same whatever the system
-   setting: oxblood #590907 (surface), sand #E8D2B5 (text, chips, actions),
-   sage #A5A79B (secondary text, lines, controls). Tints are those colours at
-   lower opacity, not new hues. --bar/--hi are the placeholder chip. */
+   setting: cobalt black #0B1029 (surface), lavender violet #B8A2F2 (text,
+   lines), tropical lime #BFF23A (placeholder chips, actions, active controls).
+   Tints are those colours at lower opacity, not new hues. --bar/--hi are the
+   placeholder chip. */
 :root {
-  --paper: #590907; --card: rgba(232, 210, 181, .07); --field: rgba(232, 210, 181, .06);
-  --ink: #E8D2B5; --muted: #A5A79B; --line: rgba(165, 167, 155, .35);
-  --bar: #E8D2B5; --hi: #590907; --track: rgba(165, 167, 155, .45); --danger: #E8D2B5;
+  --paper: #0B1029; --card: rgba(184, 162, 242, .07); --field: rgba(184, 162, 242, .06);
+  --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25);
+  --bar: #BFF23A; --hi: #0B1029; --track: rgba(184, 162, 242, .3); --danger: #B8A2F2;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme: dark;
@@ -37,7 +38,7 @@ textarea:focus, input:focus, button:focus-visible { outline: 2px solid var(--bar
 .switch { position: relative; display: inline-block; width: 34px; height: 20px; flex: none; }
 .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .switch span { position: absolute; inset: 0; background: var(--track); border-radius: 99px; transition: background .15s; cursor: pointer; }
-.switch span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--muted); transition: transform .15s; }
+.switch span::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transition: transform .15s; }
 .switch input:not(:checked) + span { box-shadow: inset 0 0 0 1px var(--muted); }
 .switch input:checked + span { background: var(--bar); }
 .switch input:checked + span::after { transform: translateX(14px); background: var(--hi); }

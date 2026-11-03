@@ -3,7 +3,7 @@
 // reach in, which matters because the tooltip shows original values.
 
 const STYLE = `
-:host { all: initial; --paper: #590907; --ink: #E8D2B5; --muted: #A5A79B; --line: rgba(165, 167, 155, .35); --bar: #E8D2B5; --hi: #590907; }
+:host { all: initial; --paper: #0B1029; --ink: #B8A2F2; --muted: rgba(184, 162, 242, .78); --line: rgba(184, 162, 242, .25); --bar: #BFF23A; --hi: #0B1029; }
 * { box-sizing: border-box; }
 .wrap { position: fixed; z-index: 2147483647; right: 20px; bottom: 20px; width: min(380px, calc(100vw - 32px));
   font: 13px/1.45 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); }
