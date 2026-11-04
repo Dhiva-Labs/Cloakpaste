@@ -57,7 +57,7 @@ const ORIGIN = `http://127.0.0.1:${PORT}`;
 const OTHER = `http://localhost:${PORT}`;
 
 const IDLE_MS = 8000;
-const home = await mkdtemp(join(tmpdir(), 'pasteguard-ff-'));
+const home = await mkdtemp(join(tmpdir(), 'cloakpaste-ff-'));
 const browser = await puppeteer.launch({
   browser: 'firefox',
   executablePath: process.env.FIREFOX,
@@ -150,7 +150,7 @@ try {
   // An extension page for poking at storage and asking the runtime.
   const ext = await openExtPage('/src/popup/popup.html', 'ext');
 
-  console.log(`PasteGuard e2e on ${await browser.version()}`);
+  console.log(`Cloakpaste e2e on ${await browser.version()}`);
   const page = track(await browser.newPage(), 'page');
   await page.goto(ORIGIN + '/');
 

@@ -34,9 +34,9 @@ async function render() {
   const covered = web && (BUILTIN_SITES.includes(url.hostname) || customSites.includes(url.origin));
   $('site-switch').hidden = !covered;
   $('add-site').hidden = !web || covered;
-  if (!web) $('status').textContent = "PasteGuard only works on web pages.";
+  if (!web) $('status').textContent = "Cloakpaste only works on web pages.";
   else if (!covered) $('status').textContent = 'Not protected. Add it if you use an AI tool here.';
-  else if (!settings.enabled) $('status').textContent = 'PasteGuard is off everywhere.';
+  else if (!settings.enabled) $('status').textContent = 'Cloakpaste is off everywhere.';
   else $('status').textContent = siteEnabled(settings, url.hostname) ? 'Pastes are checked before they land.' : 'Off for this site.';
   $('site').checked = covered && settings.sites[url.hostname] !== false;
 

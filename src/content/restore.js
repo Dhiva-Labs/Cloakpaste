@@ -2,7 +2,7 @@
 //
 // Default ("highlight") never writes originals into the page: placeholders
 // are marked with the CSS Custom Highlight API (no DOM changes, so React and
-// ProseMirror are unaffected) and the original appears in PasteGuard's own
+// ProseMirror are unaffected) and the original appears in Cloakpaste's own
 // closed-shadow tooltip on hover. "replace" mode swaps the text in place,
 // which is friendlier to read but lets the site's scripts see the originals.
 

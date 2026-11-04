@@ -122,8 +122,8 @@ import {
       ui.toast({
         title: 'Paste held back',
         detail: /context invalidated/i.test(res?.error || '')
-          ? 'PasteGuard was updated. Reload this page to keep protecting pastes.'
-          : "PasteGuard couldn't check this text.",
+          ? 'Cloakpaste was updated. Reload this page to keep protecting pastes.'
+          : "Cloakpaste couldn't check this text.",
         actions: [{ label: 'Paste anyway', onClick: () => (restoreSelection(target, snap), insertText(target, text, html, dispatchTo)) }],
       });
       return;

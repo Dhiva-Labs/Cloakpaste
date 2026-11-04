@@ -2,7 +2,7 @@
 // minified). Takes the working tree as git sees it, committed or not, so
 // .gitignore keeps out node_modules, dist and the downloaded model weights.
 // Build steps for reviewers: docs/BUILD_FIREFOX.md.
-//   node scripts/package-source.mjs   ->  dist/pasteguard-source-<version>.zip
+//   node scripts/package-source.mjs   ->  dist/cloakpaste-source-<version>.zip
 import { execFileSync } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -12,10 +12,10 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const { version } = JSON.parse(await readFile(join(root, 'manifest.json'), 'utf8'));
-const zip = join(root, 'dist', `pasteguard-source-${version}.zip`);
+const zip = join(root, 'dist', `cloakpaste-source-${version}.zip`);
 
 // A throwaway index, so the real one (and anything staged) is left alone.
-const tmp = await mkdtemp(join(tmpdir(), 'pasteguard-src-'));
+const tmp = await mkdtemp(join(tmpdir(), 'cloakpaste-src-'));
 const git = (...args) =>
   execFileSync('git', args, { cwd: root, env: { ...process.env, GIT_INDEX_FILE: join(tmp, 'index') } })
     .toString()

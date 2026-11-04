@@ -4,7 +4,7 @@
 // align WordPiece tokens back onto the original text ourselves, then group
 // BIO labels into entities and clean them up.
 
-// Model label -> PasteGuard type. Labels not listed are ignored (DATE_TIME,
+// Model label -> Cloakpaste type. Labels not listed are ignored (DATE_TIME,
 // AGE, TITLE, NRP and friends are too common to hide by default).
 export const LABEL_MAP = {
   PERSON: 'PERSON',

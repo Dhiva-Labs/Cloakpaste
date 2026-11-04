@@ -1,4 +1,4 @@
-// Every kind of item PasteGuard can hide. `prefix` is what appears in the
+// Every kind of item Cloakpaste can hide. `prefix` is what appears in the
 // placeholder ([EMAIL_1]); `priority` decides which span wins when two
 // detectors claim overlapping text (higher wins).
 

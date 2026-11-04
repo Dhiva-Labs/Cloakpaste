@@ -48,7 +48,7 @@ const server = createServer(async (req, res) => {
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const ORIGIN = `http://127.0.0.1:${server.address().port}`;
 
-const profile = await mkdtemp(join(tmpdir(), 'pasteguard-e2e-'));
+const profile = await mkdtemp(join(tmpdir(), 'cloakpaste-e2e-'));
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME || '/usr/bin/google-chrome',
   headless: true,
@@ -105,7 +105,7 @@ try {
     await page.keyboard.up('Control');
   };
 
-  // Click a button inside PasteGuard's closed shadow root by its label.
+  // Click a button inside Cloakpaste's closed shadow root by its label.
   async function clickShadowButton(label) {
     const { root: doc } = await cdp.send('DOM.getDocument', { depth: -1, pierce: true });
     const stack = [doc];
@@ -133,7 +133,7 @@ try {
     return out.join(' ');
   }
 
-  console.log(`PasteGuard e2e on Chrome ${await browser.version()} (extension ${extId})`);
+  console.log(`Cloakpaste e2e on Chrome ${await browser.version()} (extension ${extId})`);
 
   await test('textarea paste is redacted', async () => {
     await setClipboard(SECRET_TEXT);

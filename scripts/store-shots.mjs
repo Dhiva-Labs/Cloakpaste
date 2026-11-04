@@ -26,7 +26,7 @@ const server = createServer(async (req, res) => {
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const ORIGIN = `http://127.0.0.1:${server.address().port}`;
-const profile = await mkdtemp(join(tmpdir(), 'pasteguard-shots-'));
+const profile = await mkdtemp(join(tmpdir(), 'cloakpaste-shots-'));
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME || '/usr/bin/google-chrome',
   headless: true,
@@ -164,7 +164,7 @@ try {
       p{margin:${big ? 10 : 4}px 0 ${big ? 22 : 12}px;font-size:${big ? 26 : 14}px;color:rgba(241,237,253,.75)}
       .line{font-size:${big ? 22 : 12}px;color:rgba(241,237,253,.9)}</style>
       <div class="wrap"><img src="data:image/png;base64,${icon}"><div>
-      <h1>PasteGuard</h1><p>Hide secrets before you paste into <span class="mint">AI chats</span></p>
+      <h1>Cloakpaste</h1><p>Hide secrets before you paste into <span class="mint">AI chats</span></p>
       <div class="line">ping <span class="chip">PERSON_1</span> at <span class="chip">EMAIL_1</span></div></div></div>`;
   await frame.setViewport({ width: 440, height: 280 });
   await frame.setContent(promo(440, 280, false));

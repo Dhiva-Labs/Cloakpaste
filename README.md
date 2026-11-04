@@ -1,9 +1,9 @@
-# PasteGuard
+# Cloakpaste
 
 Hides secrets and personal data before you paste them into AI chats, by **DhivaLabs**.
 
 Paste a stack trace, an email thread or a config file into ChatGPT, Claude or
-Gemini, and PasteGuard swaps the sensitive parts for placeholders before the
+Gemini, and Cloakpaste swaps the sensitive parts for placeholders before the
 text lands in the chat box:
 
 ```
@@ -28,8 +28,8 @@ the extension makes no network requests. See the [privacy policy](PRIVACY.md).
 
 - **Chrome Web Store:** pending review.
 - **Firefox:** submitted to addons.mozilla.org, pending review (Firefox 140 or later).
-- **From a release:** download `pasteguard-<version>.zip` from
-  [Releases](https://github.com/Dhiva-Labs/PasteGuard/releases) and unzip it.
+- **From a release:** download `cloakpaste-<version>.zip` from
+  [Releases](https://github.com/Dhiva-Labs/Cloakpaste/releases) and unzip it.
   Then open `chrome://extensions`, turn on Developer mode, choose
   **Load unpacked** and select the unzipped folder.
 
@@ -74,7 +74,7 @@ paste ──► content script ──► service worker ──► offscreen docu
   document. A typical paste takes 10–80 ms. The first paste after the browser
   starts takes about a second while the model loads.
 - **Offsets.** transformers.js doesn't return character offsets for BERT
-  tokens, so PasteGuard aligns WordPiece tokens back to the original text
+  tokens, so Cloakpaste aligns WordPiece tokens back to the original text
   itself (`src/ner/decode.js`), then cleans up the entities: it trims filler
   words ("Ping John" becomes "John"), joins names split in two, and rejects
   code identifiers.
@@ -113,8 +113,12 @@ check rather than a benchmark. Run `npm run eval:ner` to reproduce them.
 ChatGPT, Claude, Gemini, Google AI Studio, Microsoft Copilot, Perplexity,
 DeepSeek, Mistral Le Chat, Grok, Poe, HuggingChat, Qwen Chat and Meta AI. To
 protect any other site, such as a self-hosted Open WebUI or an internal tool,
-open it and choose **Protect this site** in the PasteGuard menu. Each site
+open it and choose **Protect this site** in the Cloakpaste menu. Each site
 can be switched off on its own.
+
+ChatGPT, Claude, Gemini and the other product and company names on this page
+are trademarks of their respective owners. Cloakpaste is not affiliated with
+or endorsed by them.
 
 ## Limits
 
@@ -123,7 +127,7 @@ can be switched off on its own.
 - A site's own "Copy" button writes placeholders to the clipboard. Select the
   text and copy it instead to get the originals.
 - The model is English-focused. Pattern detection works in any language.
-- No detector is perfect. PasteGuard reduces accidental leaks; it doesn't
+- No detector is perfect. Cloakpaste reduces accidental leaks; it doesn't
   guarantee none.
 
 ## Development

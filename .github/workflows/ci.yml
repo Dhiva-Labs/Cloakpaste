@@ -27,5 +27,5 @@ jobs:
         run: npm run package
       - uses: actions/upload-artifact@v4
         with:
-          name: pasteguard-zip
-          path: dist/pasteguard-*.zip
+          name: cloakpaste-zip
+          path: dist/cloakpaste-*.zip

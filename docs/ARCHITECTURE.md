@@ -72,6 +72,6 @@ the background for their site's vault and are told when it changes. See
 - No network access. Model files and the WebAssembly runtime load from the
   extension package with `allowRemoteModels = false`.
 - Vaults live in session storage, which is in memory and cleared when the
-  browser closes. They're readable by PasteGuard's own contexts only.
+  browser closes. They're readable by Cloakpaste's own contexts only.
 - Originals are never written into the page by default. Reply highlighting
   uses `CSS.highlights` ranges, and the tooltip lives in a closed shadow root.
