@@ -19,7 +19,8 @@ chrome.runtime.onInstalled.addListener(async ({ reason }) => {
 });
 
 // Content scripts read their site's vault directly to highlight placeholders.
-chrome.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
+// Firefox can't open session storage to them; see the end of this file.
+if (!__FIREFOX__) chrome.storage.session.setAccessLevel({ accessLevel: 'TRUSTED_AND_UNTRUSTED_CONTEXTS' });
 
 async function getSettings() {
   const { settings } = await chrome.storage.local.get('settings');
@@ -31,6 +32,7 @@ async function getSettings() {
 let creating = null;
 
 async function ensureOffscreen() {
+  if (__FIREFOX__) return ensureFrame();
   const contexts = await chrome.runtime.getContexts({ contextTypes: ['OFFSCREEN_DOCUMENT'] });
   if (contexts.length) return;
   if (!creating) {
@@ -48,6 +50,17 @@ async function ensureOffscreen() {
       });
   }
   await creating;
+}
+
+// Firefox has no offscreen documents, but its background page has a DOM: the
+// same model page runs in an iframe here and gets the same messages.
+async function ensureFrame() {
+  if (document.querySelector('iframe')) return;
+  const frame = document.createElement('iframe');
+  frame.src = chrome.runtime.getURL(OFFSCREEN_URL);
+  const loaded = new Promise((r) => frame.addEventListener('load', r, { once: true }));
+  document.body.append(frame);
+  await loaded;
 }
 
 let modelReady = false;
@@ -169,6 +182,10 @@ chrome.tabs.onRemoved.addListener((tabId) => chrome.storage.session.remove(`tab:
 
 // ---------------------------------------------------------------- extra sites
 
+// Firefox match patterns can't hold a port (one that does never matches), so
+// there a site's pattern covers its host on any port.
+const sitePattern = (origin) => `${__FIREFOX__ ? origin.replace(/:\d+$/, '') : origin}/*`;
+
 // Sites beyond the built-in list (self-hosted chat UIs, internal tools). The
 // popup requests host permission first; here we register the content script.
 async function syncCustomScripts() {
@@ -179,7 +196,7 @@ async function syncCustomScripts() {
   await chrome.scripting.registerContentScripts([
     {
       id: CUSTOM_SCRIPT_ID,
-      matches: customSites.map((o) => `${o}/*`),
+      matches: customSites.map(sitePattern),
       js: ['src/content/content.js'],
       runAt: 'document_idle',
       persistAcrossSessions: true,
@@ -199,6 +216,39 @@ async function unregisterCustomSite(origin) {
   const { customSites = [] } = await chrome.storage.local.get('customSites');
   await chrome.storage.local.set({ customSites: customSites.filter((o) => o !== origin) });
   await syncCustomScripts();
-  await chrome.permissions.remove({ origins: [`${origin}/*`] }).catch(() => {});
+  await chrome.permissions.remove({ origins: [sitePattern(origin)] }).catch(() => {});
   return { ok: true };
+}
+
+// ---------------------------------------------------------------- Firefox
+
+if (__FIREFOX__) {
+  // Content scripts can't read session storage here, so they ask for their
+  // own site's vault (never another's) and are told when it changes.
+  chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg?.type !== 'pg:vault:get' || !sender.tab) return false;
+    const key = `vault:${sender.origin || new URL(sender.url).origin}`;
+    chrome.storage.session.get(key).then(sendResponse, () => sendResponse({}));
+    return true;
+  });
+
+  chrome.storage.onChanged.addListener(async (changes, area) => {
+    if (area !== 'session') return;
+    const origins = Object.keys(changes).filter((k) => k.startsWith('vault:')).map((k) => k.slice(6));
+    if (!origins.length) return;
+    for (const tab of await chrome.tabs.query({})) {
+      if (!tab.url || !origins.includes(new URL(tab.url).origin)) continue;
+      chrome.tabs.sendMessage(tab.id, { type: 'pg:vault:changed' }).catch(() => {});
+    }
+  });
+
+  // Firefox can close the popup when its permission prompt opens, before the
+  // popup sends pg:site:add. The popup notes the site first; finish here.
+  // (If both run, the second register fails harmlessly on the duplicate id.)
+  chrome.permissions.onAdded.addListener(async ({ origins = [] }) => {
+    const { pendingSite } = await chrome.storage.session.get('pendingSite');
+    if (!pendingSite || !origins.includes(sitePattern(pendingSite))) return;
+    await chrome.storage.session.remove('pendingSite');
+    await registerCustomSite(pendingSite).catch(() => {});
+  });
 }

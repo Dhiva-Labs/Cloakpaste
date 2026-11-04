@@ -90,7 +90,13 @@ async function render() {
   };
 
   $('add-site').onclick = async () => {
-    const granted = await chrome.permissions.request({ origins: [`${url.origin}/*`] });
+    // Firefox: match patterns can't hold a port (see sitePattern in the
+    // background), and the popup may close when the prompt opens, so the
+    // background finishes from permissions.onAdded. No await before the
+    // request; it has to run inside the click.
+    if (__FIREFOX__) chrome.storage.session.set({ pendingSite: url.origin });
+    const pattern = __FIREFOX__ ? `${url.protocol}//${url.hostname}/*` : `${url.origin}/*`;
+    const granted = await chrome.permissions.request({ origins: [pattern] });
     if (!granted) return;
     await chrome.runtime.sendMessage({ type: 'pg:site:add', origin: url.origin });
     $('reload-note').hidden = false;

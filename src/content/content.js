@@ -31,7 +31,10 @@ import {
   const active = () => siteEnabled(settings, location.hostname);
 
   async function load() {
-    const [{ settings: s }, sess] = await Promise.all([chrome.storage.local.get('settings'), chrome.storage.session.get(VAULT_KEY)]);
+    const [{ settings: s }, sess] = await Promise.all([
+      chrome.storage.local.get('settings'),
+      __FIREFOX__ ? chrome.runtime.sendMessage({ type: 'pg:vault:get' }).then((r) => r || {}, () => ({})) : chrome.storage.session.get(VAULT_KEY),
+    ]);
     settings = withDefaults(s);
     vault = new Vault(sess[VAULT_KEY]);
     restorer.start();
@@ -47,6 +50,21 @@ import {
       restorer.refresh();
     }
   });
+
+  if (__FIREFOX__) {
+    // Firefox keeps session storage from content scripts, so the background
+    // says when this site's vault changed and we ask for it again.
+    let asked = 0;
+    chrome.runtime.onMessage.addListener((msg) => {
+      if (msg?.type !== 'pg:vault:changed') return;
+      const n = ++asked;
+      chrome.runtime.sendMessage({ type: 'pg:vault:get' }).then((sess) => {
+        if (n !== asked) return; // a newer answer is on its way
+        vault = new Vault(sess?.[VAULT_KEY]);
+        restorer.refresh();
+      }, () => {});
+    });
+  }
 
   // Load the model the first time someone focuses a text box, so the first
   // paste doesn't wait for it.
