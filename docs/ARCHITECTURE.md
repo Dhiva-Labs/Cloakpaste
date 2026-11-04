@@ -54,6 +54,17 @@ the model warm, and closes itself after 10 idle minutes. Only the plain SIMD
 WebAssembly build is shipped (14 MB). The WebGPU build would double the
 package size with no gain for a 4-layer model.
 
+## Firefox
+
+The same source builds for Firefox (`scripts/build.mjs --firefox`, which sets
+`__FIREFOX__`). Firefox has no offscreen documents, but its background page
+has a DOM, so the offscreen page runs there in an iframe and gets the same
+messages. The background page is suspended after 30 idle seconds, which
+unloads the model; the next paste loads it again (about 0.7 s on a laptop).
+Content scripts can't read session storage in Firefox, so they ask
+the background for their site's vault and are told when it changes. See
+[BUILD_FIREFOX.md](BUILD_FIREFOX.md).
+
 ## Privacy boundaries
 
 - No host permissions beyond the built-in chat sites. Extra sites are
