@@ -1,4 +1,4 @@
-ONNX Runtime Web (onnxruntime-web)
+ONNX Runtime Web (onnxruntime-web) and onnxruntime-common
 https://github.com/microsoft/onnxruntime
 
 MIT License

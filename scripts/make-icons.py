@@ -1,4 +1,4 @@
-"""Draws the PasteGuard icon: a black tile, pale text lines and a mint redaction bar."""
+"""Draws the Cloakpaste icon: a black tile, pale text lines and a mint redaction bar."""
 from PIL import Image, ImageDraw
 
 TILE, BAR, LINE = (0x01, 0x01, 0x02, 255), (0x58, 0xF6, 0xB1, 255), (0xF1, 0xED, 0xFD, 255)

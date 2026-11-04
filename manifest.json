@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "PasteGuard",
-  "version": "0.1.0",
+  "name": "Cloakpaste",
+  "version": "0.1.1",
   "description": "Hides emails, keys, card numbers and names before you paste into AI chats. Runs fully on-device.",
   "author": "DhivaLabs",
   "minimum_chrome_version": "116",
   "action": {
     "default_popup": "src/popup/popup.html",
-    "default_title": "PasteGuard"
+    "default_title": "Cloakpaste"
   },
   "options_page": "src/options/options.html",
   "background": {

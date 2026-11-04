@@ -1,6 +1,6 @@
 {
-  "name": "paste-guard",
-  "version": "0.1.0",
+  "name": "cloakpaste",
+  "version": "0.1.1",
   "private": true,
   "description": "Hide secrets and personal data before they reach AI chats. Runs fully on-device.",
   "type": "module",

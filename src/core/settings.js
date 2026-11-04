@@ -1,6 +1,6 @@
 import { TYPES } from './types.js';
 
-// Sites PasteGuard protects out of the box. Users can add more from the popup.
+// Sites Cloakpaste protects out of the box. Users can add more from the popup.
 export const BUILTIN_SITES = [
   'chatgpt.com',
   'chat.openai.com',

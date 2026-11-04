@@ -2,7 +2,7 @@
 
 Notes for addons.mozilla.org reviewers. The add-on's JavaScript is bundled
 and minified with esbuild, so this archive holds the source and the steps to
-rebuild the exact files in `pasteguard-firefox-<version>.zip`.
+rebuild the exact files in `cloakpaste-firefox-<version>.zip`.
 
 ## Environment used
 
@@ -21,12 +21,12 @@ node scripts/build.mjs --firefox    # unpacked add-on in dist/firefox
 `dist/firefox` then matches the submitted package file for file:
 
 ```bash
-mkdir /tmp/pg && unzip -q pasteguard-firefox-0.1.0.zip -d /tmp/pg
-diff -r /tmp/pg dist/firefox && echo identical
+mkdir /tmp/cloakpaste && unzip -q cloakpaste-firefox-0.1.1.zip -d /tmp/cloakpaste
+diff -r /tmp/cloakpaste dist/firefox && echo identical
 ```
 
 `node scripts/package.mjs --firefox` runs the same build and zips it as
-`dist/pasteguard-firefox-<version>.zip`.
+`dist/cloakpaste-firefox-<version>.zip`.
 
 ## What `npm run fetch:model` downloads
 
@@ -53,7 +53,7 @@ add-on loads the model from its own package.
 | `ort/ort-wasm-simd-threaded.mjs`, `ort/ort-wasm-simd-threaded.wasm` | copied unchanged from `node_modules/onnxruntime-web/dist/` (`onnxruntime-web` 1.31.0-dev.20260914-8d85527a0, the version `@huggingface/transformers` 4.3.2 pins). SHA-256 `c57ca563…de9f` and `06ba0577…df9e3`. |
 | `models/pii/*` | `models/pii/` (see above) |
 | `manifest.json` | `manifest.json`, adapted for Firefox by `scripts/build.mjs` |
-| `THIRD_PARTY_NOTICES.md`, `PRIVACY.md`, `licenses/` | copied |
+| `THIRD_PARTY_NOTICES.md`, `PRIVACY.md`, `licenses/` | copied; `licenses/Apache-2.0.txt` is `node_modules/@huggingface/transformers/LICENSE` |
 
 ## Notes for review
 

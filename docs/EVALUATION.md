@@ -1,6 +1,6 @@
 # Evaluating the name and place model
 
-PasteGuard uses pattern detectors for anything with a fixed shape (keys,
+Cloakpaste uses pattern detectors for anything with a fixed shape (keys,
 emails, card numbers) and a small on-device model for what patterns can't
 catch: people's names, places and street addresses. This page covers how the
 model's confidence thresholds were chosen.

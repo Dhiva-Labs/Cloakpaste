@@ -71,6 +71,7 @@ if (firefox) {
   delete manifest.minimum_chrome_version;
   manifest.background = { scripts: [manifest.background.service_worker], type: 'module' };
   manifest.permissions = manifest.permissions.filter((p) => p !== 'offscreen');
+  // The ID predates the Cloakpaste name and stays: addons.mozilla.org IDs are permanent.
   manifest.browser_specific_settings = {
     gecko: { id: 'pasteguard@dhiva-labs', strict_min_version: '140.0', data_collection_permissions: { required: ['none'] } },
   };

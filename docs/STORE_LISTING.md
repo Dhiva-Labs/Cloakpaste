@@ -1,12 +1,12 @@
 # Chrome Web Store listing
 
-Upload `dist/pasteguard-<version>.zip` (built by `npm run package`).
+Upload `dist/cloakpaste-<version>.zip` (built by `npm run package`).
 Images are in `store-assets/` (rendered by `node scripts/store-shots.mjs`
 after `npm run build:test`).
 
 ## Store listing
 
-**Name:** PasteGuard
+**Name:** Cloakpaste
 
 **Summary** (132 characters max):
 Hides emails, keys, card numbers and names before you paste into AI chats. Runs fully on your device.
@@ -20,12 +20,14 @@ Hides emails, keys, card numbers and names before you paste into AI chats. Runs 
 > without substantial added value" and any keyword repeated more than 5
 > times. DL Image Tools was rejected for a brand list. Keep the description
 > to a few named examples, point to the settings page or README for the
-> full site list, and use "PasteGuard" no more than 4 times.
+> full site list, and use "Cloakpaste" no more than 4 times (the trademark
+> line and the source link count). "AI" is already at 5, and ChatGPT, Claude
+> and Gemini at 2 each with the trademark line.
 
 ```
-PasteGuard keeps private data out of AI chats.
+Cloakpaste keeps private data out of AI chats.
 
-Paste a stack trace, an email thread or a config file into an AI chat, and PasteGuard swaps the sensitive parts for placeholders before the text lands in the message box:
+Paste a stack trace, an email thread or a config file into an AI chat, and Cloakpaste swaps the sensitive parts for placeholders before the text lands in the message box:
 
   Hi Priya Raman, reach me at arjun@northwind.dev
   becomes
@@ -57,9 +59,11 @@ IN YOUR CONTROL
 WHERE IT WORKS
 Popular AI chat sites such as ChatGPT, Claude and Gemini are protected out of the box; the full list is on the settings page. To cover any other site, such as a self-hosted chat UI, open it and choose "Protect this site".
 
-Only pasted text is checked. Text you type yourself and files you upload are not. PasteGuard reduces accidental leaks; no detector catches everything.
+Only pasted text is checked. Text you type yourself and files you upload are not. The extension reduces accidental leaks; no detector catches everything.
 
-Source code: https://github.com/Dhiva-Labs/PasteGuard
+ChatGPT, Claude and Gemini are trademarks of their respective owners. Cloakpaste is not affiliated with or endorsed by them.
+
+Source code: https://github.com/Dhiva-Labs/Cloakpaste
 ```
 
 **Images**
@@ -68,8 +72,8 @@ Source code: https://github.com/Dhiva-Labs/PasteGuard
 - Small promo tile (440×280): `store-assets/promo-small-440x280.png`
 - Marquee (1400×560): `store-assets/promo-marquee-1400x560.png`
 
-**Website:** https://github.com/Dhiva-Labs/PasteGuard
-**Support:** https://github.com/Dhiva-Labs/PasteGuard/issues
+**Website:** https://github.com/Dhiva-Labs/Cloakpaste
+**Support:** https://github.com/Dhiva-Labs/Cloakpaste/issues
 
 ## Privacy practices tab
 
@@ -85,14 +89,14 @@ Hide sensitive data in text pasted into AI chat websites by replacing it with pl
 
 **Remote code:** No. All JavaScript, WebAssembly and model weights are in the package. `wasm-unsafe-eval` in the CSP is required to compile the bundled WebAssembly.
 
-**Data usage:** PasteGuard reads pasted text on the device to redact it. Nothing is transmitted. The categories it handles locally are personally identifiable information (names, emails, phone numbers, ID numbers, addresses), authentication information (passwords, API keys, tokens), financial and payment information (card numbers, IBANs) and website content (the pasted text).
+**Data usage:** Cloakpaste reads pasted text on the device to redact it. Nothing is transmitted. The categories it handles locally are personally identifiable information (names, emails, phone numbers, ID numbers, addresses), authentication information (passwords, API keys, tokens), financial and payment information (card numbers, IBANs) and website content (the pasted text).
 
 Certify all three:
 - Not sold or transferred to third parties, outside approved use cases
 - Not used or transferred for purposes unrelated to the item's single purpose
 - Not used or transferred to determine creditworthiness or for lending
 
-**Privacy policy URL:** https://github.com/Dhiva-Labs/PasteGuard/blob/main/PRIVACY.md
+**Privacy policy URL:** https://github.com/Dhiva-Labs/Cloakpaste/blob/main/PRIVACY.md
 
 ## Distribution
 
