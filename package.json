@@ -11,7 +11,11 @@
     "test:e2e": "node tests/e2e/run.mjs",
     "build": "node scripts/build.mjs",
     "build:test": "node scripts/build.mjs --test",
-    "package": "node scripts/package.mjs"
+    "build:firefox": "node scripts/build.mjs --firefox",
+    "test:e2e:firefox": "node tests/e2e/firefox.mjs",
+    "package": "node scripts/package.mjs",
+    "package:firefox": "node scripts/package.mjs --firefox",
+    "package:source": "node scripts/package-source.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {

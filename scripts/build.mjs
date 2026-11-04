@@ -1,19 +1,29 @@
 // Builds the unpacked extension into dist/extension.
-//   node scripts/build.mjs          production build
-//   node scripts/build.mjs --test   also matches http://127.0.0.1 for e2e tests
+//   node scripts/build.mjs             production build
+//   node scripts/build.mjs --test      also matches http://127.0.0.1 for e2e tests
+//   node scripts/build.mjs --firefox   Firefox build in dist/firefox (combines with --test)
 import { build } from 'esbuild';
 import { cp, mkdir, readFile, rm, writeFile, stat } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const out = join(root, 'dist', 'extension');
 const test = process.argv.includes('--test');
+const firefox = process.argv.includes('--firefox');
+const out = join(root, 'dist', firefox ? 'firefox' : 'extension');
 
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 
-const common = { bundle: true, target: 'chrome116', legalComments: 'none', logLevel: 'warning', minify: !test };
+// __FIREFOX__ picks the Firefox code paths; the Chrome bundles drop them entirely.
+const common = {
+  bundle: true,
+  target: firefox ? 'firefox140' : 'chrome116',
+  define: { __FIREFOX__: String(firefox) },
+  legalComments: 'none',
+  logLevel: 'warning',
+  minify: !test,
+};
 await build({
   ...common,
   format: 'esm',
@@ -55,10 +65,20 @@ if (test) {
   manifest.name += ' (test)';
   manifest.content_scripts[0].matches.push('http://127.0.0.1/*');
 }
+if (firefox) {
+  // Firefox runs the background as an event page (it has a DOM, so the model
+  // runs in an iframe there instead of an offscreen document).
+  delete manifest.minimum_chrome_version;
+  manifest.background = { scripts: [manifest.background.service_worker], type: 'module' };
+  manifest.permissions = manifest.permissions.filter((p) => p !== 'offscreen');
+  manifest.browser_specific_settings = {
+    gecko: { id: 'pasteguard@dhiva-labs', strict_min_version: '140.0', data_collection_permissions: { required: ['none'] } },
+  };
+}
 await writeFile(join(out, 'manifest.json'), JSON.stringify(manifest, null, 2));
 // Notices for the bundled model and runtime (Apache-2.0 asks for the licence text).
 await copy('THIRD_PARTY_NOTICES.md');
 await copy('PRIVACY.md');
 await copy('node_modules/@huggingface/transformers/LICENSE', 'licenses/Apache-2.0.txt');
 await copy('licenses');
-console.log(`Built ${test ? 'test ' : ''}extension -> ${out}`);
+console.log(`Built ${test ? 'test ' : ''}${firefox ? 'Firefox ' : ''}extension -> ${out}`);

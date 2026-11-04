@@ -32,10 +32,11 @@ function engine() {
 }
 
 // Free the model's memory when nobody has pasted for a while; the service
-// worker recreates this document on the next paste.
+// worker recreates this document on the next paste. In Firefox this page is
+// an iframe in the background page, which can't close itself.
 function touch() {
   clearTimeout(idleTimer);
-  idleTimer = setTimeout(() => window.close(), IDLE_CLOSE_MS);
+  idleTimer = setTimeout(() => (__FIREFOX__ ? frameElement.remove() : window.close()), IDLE_CLOSE_MS);
 }
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {

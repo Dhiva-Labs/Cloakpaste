@@ -27,6 +27,7 @@ the extension makes no network requests. See the [privacy policy](PRIVACY.md).
 ## Install
 
 - **Chrome Web Store:** pending review.
+- **Firefox:** submitted to addons.mozilla.org, pending review (Firefox 140 or later).
 - **From a release:** download `pasteguard-<version>.zip` from
   [Releases](https://github.com/Dhiva-Labs/PasteGuard/releases) and unzip it.
   Then open `chrome://extensions`, turn on Developer mode, choose
@@ -135,13 +136,18 @@ npm run eval:ner         # precision/recall sweep for the model thresholds
 npm run build:test       # dist/extension, also matching http://127.0.0.1
 npm run test:e2e         # headless Chrome: textarea, contenteditable, ProseMirror
 npm run build            # production build in dist/extension
+npm run build:firefox    # Firefox build in dist/firefox
+FIREFOX=/path/to/firefox npm run test:e2e:firefox   # after build.mjs --firefox --test
 ```
 
 To try it, open `chrome://extensions`, turn on Developer mode, choose
 **Load unpacked** and select `dist/extension`. The settings page includes a
 playground that shows what would be hidden in any text.
 
-Requires Chrome 116 or later.
+Requires Chrome 116 or later, or Firefox 140 or later. `npm run package` and
+`npm run package:firefox` make the store zips; `npm run package:source` makes
+the source archive addons.mozilla.org asks for (see
+[docs/BUILD_FIREFOX.md](docs/BUILD_FIREFOX.md)).
 
 ## Sponsors
 

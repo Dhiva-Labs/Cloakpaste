@@ -59,6 +59,13 @@ export function insertText(target, text, html = '', dispatchTo = target) {
   dt.setData('text/plain', text);
   if (html) dt.setData('text/html', html);
   const ev = new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true, composed: true });
+  if (__FIREFOX__) {
+    // Firefox ignores clipboardData in the init and hides data a content
+    // script sets from the page, so write it through the page's own view.
+    const data = ev.wrappedJSObject.clipboardData;
+    data.setData('text/plain', text);
+    if (html) data.setData('text/html', html);
+  }
   (dispatchTo.isConnected ? dispatchTo : target).dispatchEvent(ev);
   if (!ev.defaultPrevented) document.execCommand('insertText', false, text);
 }
