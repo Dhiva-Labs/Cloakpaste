@@ -26,8 +26,8 @@ the extension makes no network requests. See the [privacy policy](PRIVACY.md).
 
 ## Install
 
-- **Chrome Web Store:** pending review.
-- **Firefox:** submitted to addons.mozilla.org, pending review (Firefox 140 or later).
+- **Chrome Web Store:** [Cloakpaste on the Chrome Web Store](https://chromewebstore.google.com/detail/cloakpaste/ipbcjcgdoedkfkeahgknlbbhkaoglppm) (Chrome 116 or later).
+- **Firefox:** [Cloakpaste on Firefox Add-ons](https://addons.mozilla.org/firefox/addon/cloakpaste/) (Firefox 140 or later).
 - **From a release:** download `cloakpaste-<version>.zip` from
   [Releases](https://github.com/Dhiva-Labs/Cloakpaste/releases) and unzip it.
   Then open `chrome://extensions`, turn on Developer mode, choose
