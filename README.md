@@ -2,6 +2,8 @@
 
 Hides secrets and personal data before you paste them into AI chats, by **DhivaLabs**.
 
+**Documentation:** step-by-step guides at [learn.dhivalabs.com](https://learn.dhivalabs.com/apps/cloakpaste/): [install](https://learn.dhivalabs.com/apps/cloakpaste/install) · [beginner guide](https://learn.dhivalabs.com/apps/cloakpaste/getting-started) · [troubleshooting](https://learn.dhivalabs.com/apps/cloakpaste/faq). New to the topic? Try the [AI and local models](https://learn.dhivalabs.com/tracks/ai/) and [Security and safe habits](https://learn.dhivalabs.com/tracks/security/) learning tracks.
+
 Paste a stack trace, an email thread or a config file into ChatGPT, Claude or
 Gemini, and Cloakpaste swaps the sensitive parts for placeholders before the
 text lands in the chat box:
