@@ -70,7 +70,9 @@ the background for their site's vault and are told when it changes. See
 - No host permissions beyond the built-in chat sites. Extra sites are
   requested one origin at a time.
 - No network access. Model files and the WebAssembly runtime load from the
-  extension package with `allowRemoteModels = false`.
+  extension package with `allowRemoteModels = false`. The build swaps
+  transformers.js's jsdelivr default for the packaged `ort/` folder and fails
+  if any CDN URL is left in the package (Manifest V3 bans remote code).
 - Vaults live in session storage, which is in memory and cleared when the
   browser closes. They're readable by Cloakpaste's own contexts only.
 - Originals are never written into the page by default. Reply highlighting
