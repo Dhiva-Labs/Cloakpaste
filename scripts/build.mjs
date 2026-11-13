@@ -3,8 +3,8 @@
 //   node scripts/build.mjs --test      also matches http://127.0.0.1 for e2e tests
 //   node scripts/build.mjs --firefox   Firefox build in dist/firefox (combines with --test)
 import { build } from 'esbuild';
-import { cp, mkdir, readFile, rm, writeFile, stat } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { cp, mkdir, readdir, readFile, rm, writeFile, stat } from 'node:fs/promises';
+import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -15,9 +15,25 @@ const out = join(root, 'dist', firefox ? 'firefox' : 'extension');
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 
+// transformers.js points onnxruntime-web at jsdelivr by default. The offscreen
+// page overrides that with the bundled ort/ files, so the CDN is never used,
+// but the Chrome Web Store flags the URL itself as remotely hosted code
+// (Manifest V3). Swap the default for the packaged ort/ folder.
+const ORT_CDN_DEFAULT = /`https:\/\/cdn\.jsdelivr\.net\/npm\/onnxruntime-web@\$\{[^}`]*\}\/dist\/`/g;
+const localOrt = {
+  name: 'local-ort',
+  setup(b) {
+    b.onLoad({ filter: /[\\/]@huggingface[\\/]transformers[\\/]dist[\\/][^\\/]+\.js$/ }, async (args) => ({
+      contents: (await readFile(args.path, 'utf8')).replace(ORT_CDN_DEFAULT, '"/ort/"'),
+      loader: 'js',
+    }));
+  },
+};
+
 // __FIREFOX__ picks the Firefox code paths; the Chrome bundles drop them entirely.
 const common = {
   bundle: true,
+  plugins: [localOrt],
   target: firefox ? 'firefox140' : 'chrome116',
   define: { __FIREFOX__: String(firefox) },
   legalComments: 'none',
@@ -82,4 +98,19 @@ await copy('THIRD_PARTY_NOTICES.md');
 await copy('PRIVACY.md');
 await copy('node_modules/@huggingface/transformers/LICENSE', 'licenses/Apache-2.0.txt');
 await copy('licenses');
+
+// Manifest V3 forbids remotely hosted code, and the store scans for CDN URLs.
+// Fail the build if any packaged file still names a host that serves scripts
+// or WebAssembly.
+const REMOTE_CODE = /https?:\/\/(?:cdn\.jsdelivr\.net|unpkg\.com|cdnjs\.cloudflare\.com|esm\.sh|esm\.run|cdn\.skypack\.dev|ga\.jspm\.io)\b[^\s"'`)]*/;
+const hits = [];
+for (const f of await readdir(out, { recursive: true })) {
+  if (!/\.(?:m?js|html|json)$/.test(f)) continue;
+  const m = (await readFile(join(out, f), 'utf8')).match(REMOTE_CODE);
+  if (m) hits.push(`  ${relative(root, join(out, f))}: ${m[0]}`);
+}
+if (hits.length) {
+  console.error(`Remote code URL in the build (not allowed in Manifest V3):\n${hits.join('\n')}`);
+  process.exit(1);
+}
 console.log(`Built ${test ? 'test ' : ''}${firefox ? 'Firefox ' : ''}extension -> ${out}`);

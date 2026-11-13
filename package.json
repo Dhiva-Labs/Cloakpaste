@@ -1,6 +1,6 @@
 {
   "name": "cloakpaste",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "Hide secrets and personal data before they reach AI chats. Runs fully on-device.",
   "type": "module",

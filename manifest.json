@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Cloakpaste",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Hides emails, keys, card numbers and names before you paste into AI chats. Runs fully on-device.",
   "author": "DhivaLabs",
   "minimum_chrome_version": "116",
